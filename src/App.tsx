@@ -9,6 +9,7 @@ import {
   Clock3,
   ExternalLink,
   HeartPulse,
+  Languages,
   MapPin,
   Menu,
   Phone,
@@ -19,6 +20,8 @@ import {
   UserRoundCheck,
   X,
 } from "lucide-react";
+
+type Language = "en" | "ta";
 
 type Testimonial = {
   name: string;
@@ -59,6 +62,16 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const tamilNavItems = [
+  { label: "முகப்பு", href: "#home" },
+  { label: "எங்களை பற்றி", href: "#about" },
+  { label: "சேவைகள்", href: "#services" },
+  { label: "மருத்துவர்", href: "#doctor" },
+  { label: "கருத்துகள்", href: "#testimonials" },
+  { label: "புகைப்படங்கள்", href: "#gallery" },
+  { label: "தொடர்பு", href: "#contact" },
+];
+
 const services = [
   { name: "General Consultation", icon: Stethoscope, description: "Complete everyday health consultations for adults and seniors." },
   { name: "Pediatric Care", icon: UserRoundCheck, description: "Child-friendly checkups, nutrition advice, and growth monitoring." },
@@ -68,7 +81,124 @@ const services = [
   { name: "Referral Support", icon: Ambulance, description: "Prompt guidance and referral coordination when specialist care is needed." },
 ];
 
+const tamilServices = [
+  { name: "பொது மருத்துவ ஆலோசனை", icon: Stethoscope, description: "பெரியவர்கள் மற்றும் மூத்தவர்களுக்கு அன்றாட உடல்நல ஆலோசனைகள்." },
+  { name: "குழந்தை பராமரிப்பு", icon: UserRoundCheck, description: "குழந்தைகளுக்கான சோதனை, உணவு ஆலோசனை மற்றும் வளர்ச்சி கண்காணிப்பு." },
+  { name: "பல் பராமரிப்பு", icon: HeartPulse, description: "முன்கூட்டிய பல் மதிப்பீடு மற்றும் தேவையான பரிந்துரை வழிகாட்டல்." },
+  { name: "தடுப்பூசி", icon: Syringe, description: "குடும்பத்திற்கான வழக்கமான மற்றும் பருவகால தடுப்பூசி சேவைகள்." },
+  { name: "உடல்நல பரிசோதனை", icon: ClipboardList, description: "விரிவான மருத்துவ ஆலோசனையுடன் முன்கூட்டிய சுகாதார பரிசோதனைகள்." },
+  { name: "பரிந்துரை உதவி", icon: Ambulance, description: "சிறப்பு மருத்துவ பராமரிப்பு தேவைப்படும் போது சரியான வழிகாட்டல்." },
+];
+
 const clinicDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const tamilClinicDays = ["ஞாயிறு", "திங்கள்", "செவ்வாய்", "புதன்", "வியாழன்", "வெள்ளி", "சனி"];
+
+const copy = {
+  en: {
+    place: "Parangipettai, Tamil Nadu",
+    heroEyebrow: "WELCOME TO MALAR MEMORIAL CLINIC",
+    heroTitle: "Malar Memorial Clinic",
+    heroSubtitle: "Your Health, Our Priority",
+    heroText: "Personalized and professional care led by one dedicated physician for your family and community.",
+    callNow: "Call Now",
+    featureCards: [
+      ["Medical Clinic", "General patient care", UserRound],
+      ["Evening Hours", "Daily, 5:00-10:00 PM", Clock3],
+      ["Local Care", "Serving Parangipettai", MapPin],
+      ["5-Star Rating", "Rated on Google", Star],
+    ],
+    metricLabels: ["Google Rating", "Google Review", "Google Reviews", "Daily Hours", "Postal Code"],
+    servicesEyebrow: "OUR SERVICES",
+    servicesTitle: "Comprehensive Care for Every Need",
+    aboutEyebrow: "ABOUT US",
+    aboutTitle: "Compassionate Single-Doctor Clinic You Can Trust",
+    aboutIntro: "Malar Memorial Clinic provides accessible, attentive medical care for patients and families in Parangipettai.",
+    missionLabel: "Mission:",
+    mission: "Deliver personalized treatment with dignity and transparency.",
+    visionLabel: "Vision:",
+    vision: "Become the community's most trusted neighborhood medical clinic.",
+    aboutBullets: [
+      "Personal continuity of care with one dedicated doctor",
+      "Modern diagnostics and clean clinical environment",
+      "Transparent pricing and preventive care guidance",
+    ],
+    aboutImageTitle: "Calm, private consultation space",
+    aboutImageText: "A focused clinic environment for general health checks, follow-ups, and family care.",
+    doctorTitle: "Doctor Profile",
+    doctorRole: "MBBS - General Physician",
+    doctorTextOne: "Dr. Sentamil Selvi provides attentive general medical care for patients of all ages, including consultations for everyday health concerns, preventive guidance, and ongoing patient support.",
+    doctorTextTwo: "Her approach focuses on listening carefully, understanding each patient's concerns, and explaining the next steps in clear, practical language.",
+    careTitle: "Areas of General Care",
+    careItems: [
+      "Everyday illness and symptom evaluation",
+      "Routine health and preventive checkups",
+      "Blood pressure and diabetes follow-up",
+      "General health advice and referrals",
+    ],
+    dailyTime: "Daily, 5:00-10:00 PM",
+    testimonialsTitle: "Patient Testimonials",
+    writeReview: "Write a Google Review",
+    galleryTitle: "Clinic Gallery",
+    contactTitle: "Contact Us",
+    address: "Vathiya Palli St, Vathiya Palli, Parangipettai, Tamil Nadu 608502",
+    plusCode: "Plus code: FQX6+93, Parangipettai",
+    openDaily: "Open daily: 5:00 PM-10:00 PM",
+    hoursTitle: "Opening Hours",
+    hoursValue: "5:00-10:00 PM",
+  },
+  ta: {
+    place: "பரங்கிப்பேட்டை, தமிழ்நாடு",
+    heroEyebrow: "மலர் மெமோரியல் கிளினிக்கிற்கு வரவேற்கிறோம்",
+    heroTitle: "மலர் மெமோரியல் கிளினிக்",
+    heroSubtitle: "உங்கள் ஆரோக்கியம், எங்கள் முன்னுரிமை",
+    heroText: "உங்கள் குடும்பத்துக்கும் சமூகத்துக்கும் ஒரே அர்ப்பணிப்புள்ள மருத்துவரால் வழங்கப்படும் தனிப்பட்ட மற்றும் நம்பகமான மருத்துவ பராமரிப்பு.",
+    callNow: "இப்போது அழைக்கவும்",
+    featureCards: [
+      ["மருத்துவ கிளினிக்", "பொது நோயாளர் பராமரிப்பு", UserRound],
+      ["மாலை நேர சேவை", "தினமும், 5:00-10:00 PM", Clock3],
+      ["உள்ளூர் பராமரிப்பு", "பரங்கிப்பேட்டைக்கு சேவை", MapPin],
+      ["5 நட்சத்திர மதிப்பீடு", "Google-ல் மதிப்பிடப்பட்டது", Star],
+    ],
+    metricLabels: ["Google மதிப்பீடு", "Google கருத்து", "Google கருத்துகள்", "தினசரி நேரம்", "அஞ்சல் குறியீடு"],
+    servicesEyebrow: "எங்கள் சேவைகள்",
+    servicesTitle: "ஒவ்வொரு தேவைக்கும் முழுமையான பராமரிப்பு",
+    aboutEyebrow: "எங்களை பற்றி",
+    aboutTitle: "நம்பிக்கையுடன் அணுகக்கூடிய அன்பான ஒரே மருத்துவர் கிளினிக்",
+    aboutIntro: "மலர் மெமோரியல் கிளினிக் பரங்கிப்பேட்டையில் நோயாளிகளுக்கும் குடும்பங்களுக்கும் எளிதாக அணுகக்கூடிய கவனமான மருத்துவ சேவையை வழங்குகிறது.",
+    missionLabel: "பணி:",
+    mission: "மரியாதை மற்றும் வெளிப்படைத்தன்மையுடன் தனிப்பட்ட சிகிச்சை வழங்குதல்.",
+    visionLabel: "நோக்கம்:",
+    vision: "சமூகத்தின் மிகவும் நம்பகமான அருகிலுள்ள மருத்துவ கிளினிக்காக உருவாகுதல்.",
+    aboutBullets: [
+      "ஒரே அர்ப்பணிப்புள்ள மருத்துவருடன் தொடர்ச்சியான பராமரிப்பு",
+      "சுத்தமான கிளினிக் சூழல் மற்றும் தேவையான மருத்துவ வழிகாட்டல்",
+      "வெளிப்படையான அணுகுமுறை மற்றும் முன்கூட்டிய பராமரிப்பு ஆலோசனை",
+    ],
+    aboutImageTitle: "அமைதியான தனிப்பட்ட ஆலோசனை அறை",
+    aboutImageText: "பொது உடல்நல சோதனை, தொடர்ச்சி பராமரிப்பு மற்றும் குடும்ப பராமரிப்புக்கான கவனமான கிளினிக் சூழல்.",
+    doctorTitle: "மருத்துவர் விவரம்",
+    doctorRole: "MBBS - பொது மருத்துவர்",
+    doctorTextOne: "டாக்டர் செந்தமிழ் செல்வி அனைத்து வயதினருக்கும் அன்றாட உடல்நல பிரச்சினைகள், முன்கூட்டிய ஆலோசனை மற்றும் தொடர்ச்சி பராமரிப்புடன் கவனமான பொது மருத்துவ சேவையை வழங்குகிறார்.",
+    doctorTextTwo: "நோயாளியின் கவலைகளை கவனமாக கேட்டு, அடுத்த படிகளை தெளிவாகவும் எளிமையாகவும் விளக்குவது அவரது அணுகுமுறை.",
+    careTitle: "பொது பராமரிப்பு பகுதிகள்",
+    careItems: [
+      "அன்றாட நோய் மற்றும் அறிகுறி மதிப்பீடு",
+      "வழக்கமான உடல்நல மற்றும் முன்கூட்டிய பரிசோதனைகள்",
+      "இரத்த அழுத்தம் மற்றும் நீரிழிவு தொடர்ச்சி பராமரிப்பு",
+      "பொது உடல்நல ஆலோசனை மற்றும் பரிந்துரைகள்",
+    ],
+    dailyTime: "தினமும், 5:00-10:00 PM",
+    testimonialsTitle: "நோயாளர் கருத்துகள்",
+    writeReview: "Google கருத்து எழுதவும்",
+    galleryTitle: "கிளினிக் புகைப்படங்கள்",
+    contactTitle: "தொடர்பு கொள்ளுங்கள்",
+    address: "வாத்தியா பள்ளி தெரு, வாத்தியா பள்ளி, பரங்கிப்பேட்டை, தமிழ்நாடு 608502",
+    plusCode: "Plus code: FQX6+93, பரங்கிப்பேட்டை",
+    openDaily: "தினமும் திறந்திருக்கும்: 5:00 PM-10:00 PM",
+    hoursTitle: "திறந்திருக்கும் நேரம்",
+    hoursValue: "5:00-10:00 PM",
+  },
+} as const;
 
 const galleryImages = [
   { src: "/images/clinic-storefront.jpeg", alt: "Front view of Malar Memorial Clinic in Parangipettai" },
@@ -120,11 +250,19 @@ const loadGoogleMaps = (apiKey: string) =>
   });
 
 export default function App() {
+  const [language, setLanguage] = useState<Language>("en");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const [reviews, setReviews] = useState<Testimonial[]>(fallbackTestimonials);
   const [googleRating, setGoogleRating] = useState(5);
   const [googleReviewCount, setGoogleReviewCount] = useState(1);
+  const pageCopy = copy[language];
+  const activeNavItems = language === "ta" ? tamilNavItems : navItems;
+  const activeServices = language === "ta" ? tamilServices : services;
+  const activeClinicDays = language === "ta" ? tamilClinicDays : clinicDays;
+  const heroTitleClass = language === "ta"
+    ? "text-[2rem] sm:text-3xl md:text-4xl xl:text-5xl"
+    : "text-3xl sm:text-4xl lg:text-5xl";
 
   useEffect(() => {
     if (!googleApiKey || !googlePlaceId) return;
@@ -187,34 +325,56 @@ export default function App() {
   return (
     <div className="bg-white text-slate-800">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-sky-100 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#home" className="flex items-center gap-3" aria-label="Malar Memorial Clinic Home">
-            <div className="rounded-xl bg-sky-500 p-2 text-white shadow-sm">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:px-6 lg:px-8">
+          <a href="#home" className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3 xl:flex-none" aria-label="Malar Memorial Clinic Home">
+            <div className="shrink-0 rounded-xl bg-sky-500 p-2 text-white shadow-sm">
               <HeartPulse className="h-5 w-5" />
             </div>
-            <div>
-              <p className="text-lg font-bold leading-tight text-sky-600">Malar Memorial Clinic</p>
-              <p className="text-xs text-slate-500">Parangipettai, Tamil Nadu</p>
+            <div className="min-w-0">
+              <p className="truncate text-base font-bold leading-tight text-sky-600 sm:text-lg">Malar Memorial Clinic</p>
+              <p className="hidden truncate text-xs text-slate-500 sm:block">{pageCopy.place}</p>
             </div>
           </a>
 
-          <nav className="hidden rounded-full border border-sky-100 bg-white p-1 shadow-sm md:flex md:items-center md:gap-1">
-            {navItems.map((item) => (
-              <a key={item.label} href={item.href} className="rounded-full px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">
+          <nav className="hidden max-w-[58vw] rounded-full border border-sky-100 bg-white p-1 shadow-sm xl:flex xl:items-center xl:gap-1">
+            {activeNavItems.map((item) => (
+              <a key={item.label} href={item.href} className="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">
                 {item.label}
               </a>
             ))}
           </nav>
 
-          <button type="button" className="rounded-lg p-2 text-slate-700 md:hidden" onClick={() => setMobileNavOpen((open) => !open)} aria-label="Toggle menu">
-            {mobileNavOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+            <div className="inline-flex items-center gap-0.5 rounded-full border border-sky-100 bg-sky-50 p-0.5 sm:gap-1 sm:p-1" aria-label="Language selection">
+              <Languages className="ml-1 hidden h-4 w-4 text-sky-700 sm:block" />
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`rounded-full px-2 py-1.5 text-xs font-semibold transition sm:px-3 sm:text-sm ${language === "en" ? "bg-sky-500 text-white shadow-sm" : "text-sky-700 hover:bg-white"}`}
+                aria-pressed={language === "en"}
+              >
+                <span className="sm:hidden">EN</span>
+                <span className="hidden sm:inline">English</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("ta")}
+                className={`rounded-full px-2 py-1.5 text-xs font-semibold transition sm:px-3 sm:text-sm ${language === "ta" ? "bg-sky-500 text-white shadow-sm" : "text-sky-700 hover:bg-white"}`}
+                aria-pressed={language === "ta"}
+              >
+                தமிழ்
+              </button>
+            </div>
+            <button type="button" className="rounded-lg p-2 text-slate-700 xl:hidden" onClick={() => setMobileNavOpen((open) => !open)} aria-label="Toggle menu">
+              {mobileNavOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
 
         {mobileNavOpen ? (
-          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-t border-sky-100 bg-white px-4 pb-5 pt-4 md:hidden">
+          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-t border-sky-100 bg-white px-4 pb-5 pt-4 xl:hidden">
             <div className="space-y-2">
-              {navItems.map((item) => (
+              {activeNavItems.map((item) => (
                 <a key={item.label} href={item.href} onClick={() => setMobileNavOpen(false)} className="block rounded-lg bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700">
                   {item.label}
                 </a>
@@ -228,27 +388,24 @@ export default function App() {
         <section id="home" className="relative overflow-hidden bg-gradient-to-r from-sky-50 via-white to-sky-100">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl space-y-6">
-              <p className="text-sm font-semibold tracking-wide text-sky-600">WELCOME TO MALAR MEMORIAL CLINIC</p>
-              <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                Malar Memorial Clinic<br />
-                <span className="text-sky-600">Your Health, Our Priority</span>
+              <p className="text-sm font-semibold tracking-wide text-sky-600">{pageCopy.heroEyebrow}</p>
+              <h1 className={`${heroTitleClass} break-words font-bold leading-tight text-slate-900`}>
+                {pageCopy.heroTitle}<br />
+                <span className="text-sky-600">{pageCopy.heroSubtitle}</span>
               </h1>
-              <p className="max-w-xl text-base text-slate-600 sm:text-lg">Personalized and professional care led by one dedicated physician for your family and community.</p>
-              <a href="tel:+918122319226" className="inline-block rounded-lg bg-sky-500 px-6 py-3 font-semibold text-white shadow-md shadow-sky-200 transition hover:bg-sky-600">Call Now</a>
+              <p className="max-w-xl text-base text-slate-600 sm:text-lg">{pageCopy.heroText}</p>
+              <a href="tel:+918122319226" className="inline-block rounded-lg bg-sky-500 px-6 py-3 font-semibold text-white shadow-md shadow-sky-200 transition hover:bg-sky-600">{pageCopy.callNow}</a>
             </motion.div>
           </div>
         </section>
 
         <section className="mx-auto grid max-w-7xl gap-4 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {[
-            { title: "Medical Clinic", subtitle: "General patient care", icon: UserRound },
-            { title: "Evening Hours", subtitle: "Daily, 5:00-10:00 PM", icon: Clock3 },
-            { title: "Local Care", subtitle: "Serving Parangipettai", icon: MapPin },
-            { title: "5-Star Rating", subtitle: "Rated on Google", icon: Star },
-          ].map(({ title, subtitle, icon: Icon }) => (
+          {[ 
+            ...pageCopy.featureCards,
+          ].map(([title, subtitle, Icon]) => (
             <div key={title} className="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-4 shadow-sm">
               <Icon className="h-8 w-8 text-sky-500" />
-              <div><h3 className="font-semibold text-slate-900">{title}</h3><p className="text-sm text-slate-600">{subtitle}</p></div>
+              <div className="min-w-0"><h3 className="break-words font-semibold text-slate-900">{title}</h3><p className="break-words text-sm text-slate-600">{subtitle}</p></div>
             </div>
           ))}
         </section>
@@ -256,25 +413,25 @@ export default function App() {
         <section className="bg-slate-50 py-12">
           <div className="mx-auto grid max-w-6xl gap-6 px-4 text-center sm:grid-cols-2 lg:grid-cols-4">
             {[
-              [googleRating.toFixed(1), "Google Rating"],
-              [String(googleReviewCount), googleReviewCount === 1 ? "Google Review" : "Google Reviews"],
-              ["5-10 PM", "Daily Hours"],
-              ["608502", "Postal Code"],
+              [googleRating.toFixed(1), pageCopy.metricLabels[0]],
+              [String(googleReviewCount), googleReviewCount === 1 ? pageCopy.metricLabels[1] : pageCopy.metricLabels[2]],
+              ["5-10 PM", pageCopy.metricLabels[3]],
+              ["608502", pageCopy.metricLabels[4]],
             ].map(([value, label]) => (
-              <div key={label} className="rounded-xl bg-white p-6 shadow-sm"><p className="text-3xl font-bold text-sky-600">{value}</p><p className="mt-1 text-sm font-medium text-slate-600">{label}</p></div>
+              <div key={label} className="rounded-xl bg-white p-6 shadow-sm"><p className="text-3xl font-bold text-sky-600">{value}</p><p className="mt-1 break-words text-sm font-medium text-slate-600">{label}</p></div>
             ))}
           </div>
         </section>
 
         <section id="services" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold text-sky-600">OUR SERVICES</p>
-          <h2 className="text-3xl font-bold text-slate-900">Comprehensive Care for Every Need</h2>
+          <p className="text-sm font-semibold text-sky-600">{pageCopy.servicesEyebrow}</p>
+          <h2 className="break-words text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">{pageCopy.servicesTitle}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map(({ name, icon: Icon, description }) => (
+            {activeServices.map(({ name, icon: Icon, description }) => (
               <div key={name} className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
                 <Icon className="h-7 w-7 text-sky-500" />
-                <h3 className="mt-3 font-semibold text-slate-900">{name}</h3>
-                <p className="mt-2 text-sm text-slate-600">{description}</p>
+                <h3 className="mt-3 break-words font-semibold text-slate-900">{name}</h3>
+                <p className="mt-2 break-words text-sm text-slate-600">{description}</p>
               </div>
             ))}
           </div>
@@ -283,13 +440,13 @@ export default function App() {
         <section id="about" className="bg-slate-50 py-16">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <div className="space-y-5">
-              <p className="text-sm font-semibold text-sky-600">ABOUT US</p>
-              <h2 className="text-3xl font-bold text-slate-900">Compassionate Single-Doctor Clinic You Can Trust</h2>
-              <p className="text-slate-600">Malar Memorial Clinic provides accessible, attentive medical care for patients and families in Parangipettai.</p>
-              <p className="text-slate-600"><strong>Mission:</strong> Deliver personalized treatment with dignity and transparency.</p>
-              <p className="text-slate-600"><strong>Vision:</strong> Become the community's most trusted neighborhood medical clinic.</p>
+              <p className="text-sm font-semibold text-sky-600">{pageCopy.aboutEyebrow}</p>
+              <h2 className="break-words text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">{pageCopy.aboutTitle}</h2>
+              <p className="break-words text-slate-600">{pageCopy.aboutIntro}</p>
+              <p className="break-words text-slate-600"><strong>{pageCopy.missionLabel}</strong> {pageCopy.mission}</p>
+              <p className="break-words text-slate-600"><strong>{pageCopy.visionLabel}</strong> {pageCopy.vision}</p>
               <ul className="space-y-2 text-slate-700">
-                {["Personal continuity of care with one dedicated doctor", "Modern diagnostics and clean clinical environment", "Transparent pricing and preventive care guidance"].map((item) => (
+                {pageCopy.aboutBullets.map((item) => (
                   <li key={item} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-5 w-5 text-teal-500" />{item}</li>
                 ))}
               </ul>
@@ -306,8 +463,8 @@ export default function App() {
                     <Stethoscope className="h-6 w-6" />
                   </span>
                   <div>
-                    <p className="font-semibold text-slate-900">Calm, private consultation space</p>
-                    <p className="mt-1 text-sm text-slate-600">A focused clinic environment for general health checks, follow-ups, and family care.</p>
+                    <p className="break-words font-semibold text-slate-900">{pageCopy.aboutImageTitle}</p>
+                    <p className="mt-1 break-words text-sm text-slate-600">{pageCopy.aboutImageText}</p>
                   </div>
                 </div>
               </div>
@@ -316,7 +473,7 @@ export default function App() {
         </section>
 
         <section id="doctor" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-3xl font-bold text-slate-900">Doctor Profile</h2>
+          <h2 className="mb-8 break-words text-2xl font-bold text-slate-900 sm:text-3xl">{pageCopy.doctorTitle}</h2>
           <div className="grid gap-6 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6 lg:grid-cols-[300px_1fr]">
             <div
               role="img"
@@ -326,20 +483,20 @@ export default function App() {
               <Stethoscope className="h-28 w-28" strokeWidth={1.5} />
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900">Dr. Sentamizh Selvi</h3>
-              <p className="font-medium text-sky-700">MBBS - General Physician</p>
-              <p className="max-w-2xl leading-relaxed text-slate-700">Dr. Sentamizh Selvi provides attentive general medical care for patients of all ages, including consultations for everyday health concerns, preventive guidance, and ongoing patient support.</p>
-              <p className="max-w-2xl leading-relaxed text-slate-700">Her approach focuses on listening carefully, understanding each patient's concerns, and explaining the next steps in clear, practical language.</p>
+              <h3 className="text-2xl font-semibold text-slate-900">Dr. Sentamil Selvi</h3>
+              <p className="break-words font-medium text-sky-700">{pageCopy.doctorRole}</p>
+              <p className="max-w-2xl break-words leading-relaxed text-slate-700">{pageCopy.doctorTextOne}</p>
+              <p className="max-w-2xl break-words leading-relaxed text-slate-700">{pageCopy.doctorTextTwo}</p>
               <div className="border-t border-slate-200 pt-4">
-                <h4 className="font-semibold text-slate-900">Areas of General Care</h4>
+                <h4 className="break-words font-semibold text-slate-900">{pageCopy.careTitle}</h4>
                 <ul className="mt-3 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                  {["Everyday illness and symptom evaluation", "Routine health and preventive checkups", "Blood pressure and diabetes follow-up", "General health advice and referrals"].map((item) => (
-                    <li key={item} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" /><span>{item}</span></li>
+                  {pageCopy.careItems.map((item) => (
+                    <li key={item} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" /><span className="break-words">{item}</span></li>
                   ))}
                 </ul>
               </div>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-slate-200 pt-4 text-sm">
-                <p className="flex items-center gap-2 font-medium text-slate-700"><Clock3 className="h-4 w-4 text-sky-500" /> Daily, 5:00-10:00 PM</p>
+                <p className="flex items-center gap-2 font-medium text-slate-700"><Clock3 className="h-4 w-4 text-sky-500" /> {pageCopy.dailyTime}</p>
                 <a href="tel:+918122319226" className="flex items-center gap-2 font-semibold text-sky-700 hover:underline"><Phone className="h-4 w-4" /> 081223 19226</a>
               </div>
             </div>
@@ -347,7 +504,7 @@ export default function App() {
         </section>
 
         <section id="testimonials" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-3xl font-bold text-slate-900">Patient Testimonials</h2>
+          <h2 className="mb-8 break-words text-2xl font-bold text-slate-900 sm:text-3xl">{pageCopy.testimonialsTitle}</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {reviews.map((item, reviewIndex) => (
               <div key={`${item.name}-${reviewIndex}`} className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm">
@@ -364,25 +521,29 @@ export default function App() {
             ))}
           </div>
           <div className="mt-10 border-t border-slate-200 pt-8">
-            <a href={googleReviewUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 font-semibold text-white transition hover:bg-sky-600">Write a Google Review<ExternalLink className="h-4 w-4" /></a>
+            <a href={googleReviewUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 font-semibold text-white transition hover:bg-sky-600">{pageCopy.writeReview}<ExternalLink className="h-4 w-4" /></a>
           </div>
         </section>
 
         <section id="gallery" className="bg-slate-50 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-8 text-3xl font-bold text-slate-900">Clinic Gallery</h2>
+            <h2 className="mb-8 break-words text-2xl font-bold text-slate-900 sm:text-3xl">{pageCopy.galleryTitle}</h2>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
               {galleryImages.map((image, index) => (
                 <motion.button
                   key={image.src}
                   type="button"
                   onClick={() => setSelectedGalleryIndex(index)}
-                  className="overflow-hidden rounded-xl shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className={`overflow-hidden rounded-xl bg-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${index === 0 ? "col-span-2 md:col-span-1 md:row-span-2" : ""}`}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                   aria-label={`Open ${image.alt}`}
                 >
-                  <img src={image.src} alt={image.alt} className="h-44 w-full object-cover md:h-56" />
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className={`w-full object-cover ${index === 0 ? "h-80 md:h-[460px]" : "h-44 md:h-56"}`}
+                  />
                 </motion.button>
               ))}
             </div>
@@ -390,17 +551,17 @@ export default function App() {
         </section>
 
         <section id="contact" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-3xl font-bold text-slate-900">Contact Us</h2>
+          <h2 className="mb-8 break-words text-2xl font-bold text-slate-900 sm:text-3xl">{pageCopy.contactTitle}</h2>
           <div className="space-y-4 rounded-xl border border-slate-100 bg-white p-6 shadow-sm">
-            <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-sky-500" /> Vathiya Palli St, Vathiya Palli, Parangipettai, Tamil Nadu 608502</p>
+            <p className="flex items-start gap-3 break-words"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-sky-500" /> <span>{pageCopy.address}</span></p>
             <a href="tel:+918122319226" className="flex items-center gap-3 transition hover:text-sky-600"><Phone className="h-5 w-5 text-sky-500" /> 081223 19226</a>
-            <p className="flex items-center gap-3"><MapPin className="h-5 w-5 text-sky-500" /> Plus code: FQX6+93, Parangipettai</p>
-            <p className="flex items-center gap-3"><Clock3 className="h-5 w-5 text-sky-500" /> Open daily: 5:00 PM-10:00 PM</p>
+            <p className="flex items-center gap-3 break-words"><MapPin className="h-5 w-5 shrink-0 text-sky-500" /> <span>{pageCopy.plusCode}</span></p>
+            <p className="flex items-center gap-3 break-words"><Clock3 className="h-5 w-5 shrink-0 text-sky-500" /> <span>{pageCopy.openDaily}</span></p>
             <div className="border-t border-slate-200 pt-4">
-              <h3 className="font-semibold text-slate-900">Opening Hours</h3>
+              <h3 className="font-semibold text-slate-900">{pageCopy.hoursTitle}</h3>
               <dl className="mt-3 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
-                {clinicDays.map((day) => (
-                  <div key={day} className="flex items-center justify-between gap-6 border-b border-slate-100 pb-2"><dt className="text-slate-600">{day}</dt><dd className="font-medium text-slate-900">5:00-10:00 PM</dd></div>
+                {activeClinicDays.map((day) => (
+                  <div key={day} className="flex items-center justify-between gap-6 border-b border-slate-100 pb-2"><dt className="text-slate-600">{day}</dt><dd className="font-medium text-slate-900">{pageCopy.hoursValue}</dd></div>
                 ))}
               </dl>
             </div>
