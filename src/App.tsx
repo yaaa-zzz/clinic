@@ -129,7 +129,7 @@ const copy = {
     aboutImageText: "A focused clinic environment for general health checks, follow-ups, and family care.",
     doctorTitle: "Doctor Profile",
     doctorRole: "MBBS - General Physician",
-    doctorTextOne: "Dr. Sentamil Selvi provides attentive general medical care for patients of all ages, including consultations for everyday health concerns, preventive guidance, and ongoing patient support.",
+    doctorTextOne: "Dr. Senthamil Selvi provides attentive general medical care for patients of all ages, including consultations for everyday health concerns, preventive guidance, and ongoing patient support.",
     doctorTextTwo: "Her approach focuses on listening carefully, understanding each patient's concerns, and explaining the next steps in clear, practical language.",
     careTitle: "Areas of General Care",
     careItems: [
@@ -499,7 +499,7 @@ export default function App() {
               <Stethoscope className="h-28 w-28" strokeWidth={1.5} />
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">Dr. Sentamil Selvi</h3>
+              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">Dr. Senthamil Selvi</h3>
               <p className="break-words font-medium text-sky-700">{pageCopy.doctorRole}</p>
               <p className="max-w-2xl break-words leading-relaxed text-slate-700 dark:text-slate-300">{pageCopy.doctorTextOne}</p>
               <p className="max-w-2xl break-words leading-relaxed text-slate-700 dark:text-slate-300">{pageCopy.doctorTextTwo}</p>
